@@ -10,14 +10,13 @@ Create `ov.conf` in your project directory:
 {
   "embedding": {
     "dense": {
-      "provider": "volcengine",
+      "backend": "volcengine",
       "api_key": "your-api-key",
       "model": "doubao-embedding-vision-250615",
       "dimension": 1024
     }
   },
   "vlm": {
-    "provider": "volcengine",
     "api_key": "your-api-key",
     "model": "doubao-seed-1-8-251228"
   },
@@ -49,7 +48,7 @@ Embedding model configuration for vector search.
 {
   "embedding": {
     "dense": {
-      "provider": "volcengine",
+      "backend": "volcengine",
       "api_key": "your-api-key",
       "model": "doubao-embedding-vision-250615",
       "dimension": 1024,
@@ -68,7 +67,6 @@ Vision Language Model for semantic extraction.
 ```json
 {
   "vlm": {
-    "provider": "volcengine",
     "api_key": "your-api-key",
     "model": "doubao-seed-1-8-251228",
     "base_url": "https://ark.cn-beijing.volces.com/api/v3"
@@ -154,7 +152,7 @@ config = OpenVikingConfig(
     ),
     embedding=EmbeddingConfig(
         dense=DenseEmbeddingConfig(
-            provider="volcengine",
+            backend="volcengine",
             api_key="your-api-key",
             model="doubao-embedding-vision-250615",
             dimension=1024
@@ -173,7 +171,7 @@ client = ov.AsyncOpenViking(config=config)
 {
   "embedding": {
     "dense": {
-      "provider": "volcengine",
+      "backend": "volcengine",
       "api_key": "string",
       "model": "string",
       "dimension": 1024,
@@ -181,7 +179,6 @@ client = ov.AsyncOpenViking(config=config)
     }
   },
   "vlm": {
-    "provider": "string",
     "api_key": "string",
     "model": "string",
     "base_url": "string"

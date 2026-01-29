@@ -11,7 +11,7 @@ OpenViking 使用 JSON 配置文件（`ov.conf`）进行设置。配置文件支
   "user": "default_user",
   "embedding": {
     "dense": {
-      "provider": "volcengine",
+      "backend": "volcengine",
       "api_key": "your-api-key",
       "model": "doubao-embedding-vision-250615",
       "dimension": 1024,
@@ -19,7 +19,7 @@ OpenViking 使用 JSON 配置文件（`ov.conf`）进行设置。配置文件支
     }
   },
   "vlm": {
-    "provider": "volcengine",
+    "backend": "volcengine",
     "api_key": "your-api-key",
     "model": "doubao-seed-1-8-251228",
     "api_base": "https://ark.cn-beijing.volces.com/api/v3"
@@ -59,7 +59,7 @@ OpenViking 使用 JSON 配置文件（`ov.conf`）进行设置。配置文件支
 {
   "embedding": {
     "dense": {
-      "provider": "volcengine",
+      "backend": "volcengine",
       "api_key": "your-api-key",
       "model": "doubao-embedding-vision-250615",
       "dimension": 1024,
@@ -70,18 +70,18 @@ OpenViking 使用 JSON 配置文件（`ov.conf`）进行设置。配置文件支
 }
 ```
 
-**支持的 provider:**
+**支持的 backend:**
 - `openai`: OpenAI Embedding API
 - `volcengine`: 火山引擎 Embedding API
 - `vikingdb`: VikingDB Embedding API
 
-**vikingdb provider 配置示例:**
+**vikingdb backend 配置示例:**
 
 ```json
 {
   "embedding": {
     "dense": {
-      "provider": "vikingdb",
+      "backend": "vikingdb",
       "model": "bge_large_zh",
       "ak": "your-access-key",
       "sk": "your-secret-key",
@@ -98,7 +98,7 @@ OpenViking 使用 JSON 配置文件（`ov.conf`）进行设置。配置文件支
 {
   "embedding": {
     "sparse": {
-      "provider": "volcengine",
+      "backend": "volcengine",
       "api_key": "your-api-key",
       "model": "bm25-sparse-v1"
     }
@@ -116,7 +116,7 @@ OpenViking 使用 JSON 配置文件（`ov.conf`）进行设置。配置文件支
 {
   "embedding": {
     "hybrid": {
-      "provider": "volcengine",
+      "backend": "volcengine",
       "api_key": "your-api-key",
       "model": "doubao-embedding-hybrid",
       "dimension": 1024
@@ -131,13 +131,13 @@ OpenViking 使用 JSON 配置文件（`ov.conf`）进行设置。配置文件支
 {
   "embedding": {
     "dense": {
-      "provider": "volcengine",
+      "backend": "volcengine",
       "api_key": "your-api-key",
       "model": "doubao-embedding-vision-250615",
       "dimension": 1024
     },
     "sparse": {
-      "provider": "volcengine",
+      "backend": "volcengine",
       "api_key": "your-api-key",
       "model": "bm25-sparse-v1"
     }
@@ -154,7 +154,6 @@ OpenViking 使用 JSON 配置文件（`ov.conf`）进行设置。配置文件支
 ```json
 {
   "vlm": {
-    "provider": "volcengine",
     "api_key": "your-api-key",
     "model": "doubao-seed-1-8-251228",
     "base_url": "https://ark.cn-beijing.volces.com/api/v3"
@@ -240,7 +239,7 @@ config = OpenVikingConfig(
     ),
     embedding=EmbeddingConfig(
         dense=DenseEmbeddingConfig(
-            provider="volcengine",
+            backend="volcengine",
             api_key="your-api-key",
             model="doubao-embedding-vision-250615",
             dimension=1024
@@ -259,7 +258,7 @@ client = ov.AsyncOpenViking(config=config)
 {
   "embedding": {
     "dense": {
-      "provider": "volcengine",
+      "backend": "volcengine",
       "api_key": "string",
       "model": "string",
       "dimension": 1024,
@@ -267,7 +266,6 @@ client = ov.AsyncOpenViking(config=config)
     }
   },
   "vlm": {
-    "provider": "string",
     "api_key": "string",
     "model": "string",
     "base_url": "string"

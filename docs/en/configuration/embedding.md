@@ -8,7 +8,7 @@ Configure embedding models for vector search.
 {
   "embedding": {
     "dense": {
-      "provider": "volcengine",
+      "backend": "volcengine",
       "api_key": "your-volcengine-api-key",
       "model": "doubao-embedding-vision-250615",
       "dimension": 1024,
@@ -22,7 +22,7 @@ Configure embedding models for vector search.
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `provider` | str | `"volcengine"` |
+| `backend` | str | `"volcengine"` |
 | `api_key` | str | Volcengine API key |
 | `model` | str | Model name |
 | `dimension` | int | Vector dimension |
@@ -54,7 +54,7 @@ Then in config:
 {
   "embedding": {
     "dense": {
-      "provider": "volcengine",
+      "backend": "volcengine",
       "model": "doubao-embedding-vision-250615",
       "dimension": 1024
     }
@@ -69,7 +69,7 @@ from openviking.utils.config import EmbeddingConfig, DenseEmbeddingConfig
 
 embedding_config = EmbeddingConfig(
     dense=DenseEmbeddingConfig(
-        provider="volcengine",
+        backend="volcengine",
         api_key="your-api-key",
         model="doubao-embedding-vision-250615",
         dimension=1024,

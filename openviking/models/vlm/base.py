@@ -14,8 +14,7 @@ class VLMBase(ABC):
 
     def __init__(self, config: Dict[str, Any]):
         self.config = config
-        self.provider = config.get("backend", "openai")
-        
+        self.backend = config.get("backend", "openai")
         self.model = config.get("model")
         self.api_key = config.get("api_key")
         self.api_base = config.get("api_base")
@@ -59,19 +58,19 @@ class VLMBase(ABC):
 
     # Token usage tracking methods
     def update_token_usage(
-        self, model_name: str, provider: str, prompt_tokens: int, completion_tokens: int
+        self, model_name: str, backend: str, prompt_tokens: int, completion_tokens: int
     ) -> None:
         """Update token usage
 
         Args:
             model_name: Model name
-            provider: Provider name (openai, volcengine)
+            backend: Backend name (openai, volcengine)
             prompt_tokens: Number of prompt tokens
             completion_tokens: Number of completion tokens
         """
         self._token_tracker.update(
             model_name=model_name,
-            provider=provider,
+            backend=backend,
             prompt_tokens=prompt_tokens,
             completion_tokens=completion_tokens,
         )
@@ -111,27 +110,26 @@ class VLMFactory:
         """Create VLM instance
 
         Args:
-            config: VLM config, must contain 'provider' field
+            config: VLM config, must contain 'backend' field
 
         Returns:
             VLMBase: VLM instance
 
         Raises:
-            ValueError: If provider is not supported
+            ValueError: If backend is not supported
             ImportError: If related dependencies are not installed
         """
-        provider = config.get("backend", "openai")
-        
-        if provider == "openai":
+        backend = config.get("backend", "openai")
+        if backend == "openai":
             from .backends.openai_vlm import OpenAIVLM
             return OpenAIVLM(config)
-        elif provider == "volcengine":
+        elif backend == "volcengine":
             from .backends.volcengine_vlm import VolcEngineVLM
             return VolcEngineVLM(config)
         else:
-            raise ValueError(f"Unsupported VLM provider: {provider}")
+            raise ValueError(f"Unsupported VLM backend: {backend}")
 
     @staticmethod
     def get_available_backends() -> List[str]:
-        """Get list of available providers"""
+        """Get list of available backends"""
         return ["openai", "volcengine"]
